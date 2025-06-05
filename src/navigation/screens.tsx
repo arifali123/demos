@@ -128,6 +128,7 @@ export const Screens = [
     route: 'MobileInput',
     component: MobileInput,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <AntDesign name="smileo" {...DefaultIconProps} />,
   },
   {
@@ -135,6 +136,7 @@ export const Screens = [
     route: 'SwipeCards',
     component: SwipeCards,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="cards" {...DefaultIconProps} />,
   },
   {
@@ -142,6 +144,7 @@ export const Screens = [
     route: 'Spiral',
     component: Spiral,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="math-compass" {...DefaultIconProps} />
     ),
@@ -151,6 +154,7 @@ export const Screens = [
     route: 'ScrollProgress',
     component: ScrollProgress,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <Feather name="percent" {...DefaultIconProps} />,
   },
   {
@@ -158,30 +162,35 @@ export const Screens = [
     route: 'AnimatedGridList',
     component: AnimatedGridList,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <Feather name="grid" {...DefaultIconProps} />,
   },
   {
     name: 'Floating Bottom Bar',
     route: 'FloatingBottomBar',
     component: FloatingBottomBar,
+    theme: 'mixed',
     icon: () => <MaterialIcons name="highlight" {...DefaultIconProps} />,
   },
   {
     name: 'Animated Clip Box',
     route: 'AnimatedClipBox',
     component: AnimatedClipBox,
+    theme: 'light',
     icon: () => <MaterialIcons name="crop-square" {...DefaultIconProps} />,
   },
   {
     name: 'Theme Canvas Animation',
     route: 'ThemeCanvasAnimation',
     component: ThemeCanvasAnimation,
+    theme: 'dark',
     icon: () => <MaterialIcons name="color-lens" {...DefaultIconProps} />,
   },
   {
     name: 'Add to Cart',
     route: 'AddToCart',
     component: AddToCart,
+    theme: 'light',
     icon: () => (
       <MaterialIcons name="add-shopping-cart" {...DefaultIconProps} />
     ),
@@ -190,12 +199,14 @@ export const Screens = [
     name: 'BottomBarSkia',
     route: 'BottomBarSkia',
     component: BottomBarSkia,
+    theme: 'dark',
     icon: () => <Feather name="tablet" {...DefaultIconProps} />,
   },
   {
     name: 'Cuberto Slider',
     route: 'CubertoSlider',
     component: CubertoSlider,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="balloon" {...DefaultIconProps} />,
   },
   {
@@ -203,6 +214,7 @@ export const Screens = [
     route: 'Metaball',
     component: Metaball,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <Ionicons name="tennisball" {...DefaultIconProps} />,
   },
   {
@@ -210,6 +222,7 @@ export const Screens = [
     route: 'SharedTransitions',
     component: SharedTransitions,
     alert: true,
+    theme: 'light',
     icon: () => (
       <MaterialIcons name="sync" {...DefaultIconProps} color={'yellow'} />
     ),
@@ -219,6 +232,7 @@ export const Screens = [
     route: 'StoryList',
     component: StoryList,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="book-open" {...DefaultIconProps} />
     ),
@@ -229,12 +243,14 @@ export const Screens = [
     component: DynamicTabIndicatorContainer,
     iconMarginTop: 50,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialIcons name="tab" {...DefaultIconProps} />,
   },
   {
     name: 'Blur Circles',
     route: 'BlurCircles',
     component: BlurCircles,
+    theme: 'light',
     icon: () => <MaterialIcons name="blur-on" {...DefaultIconProps} />,
   },
   {
@@ -242,18 +258,21 @@ export const Screens = [
     route: 'SmoothDropdown',
     component: SmoothDropdown,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialIcons name="arrow-drop-down" {...DefaultIconProps} />,
   },
   {
     name: 'Skia BottomSheet',
     route: 'SkiaBottomSheet',
     component: SkiaBottomSheet,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="card" {...DefaultIconProps} />,
   },
   {
     name: 'Floating Modal',
     route: 'FloatingModal',
     component: FloatingModal,
+    theme: 'dark',
     icon: () => <Entypo name="popup" {...DefaultIconProps} />,
   },
   {
@@ -261,6 +280,7 @@ export const Screens = [
     route: 'AudioPlayer',
     component: AudioPlayer,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <Ionicons name="barcode" {...DefaultIconProps} />,
   },
   {
@@ -268,6 +288,7 @@ export const Screens = [
     route: 'ColorCarousel',
     component: ColorCarousel,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="palette" {...DefaultIconProps} />,
   },
   {
@@ -275,12 +296,14 @@ export const Screens = [
     route: 'Animated3DParallax',
     component: Animated3DParallax,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="twitter" {...DefaultIconProps} />,
   },
   {
     name: 'Fluid Slider',
     route: 'FluidSlider',
     component: FluidSlider,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="water" {...DefaultIconProps} />,
   },
   {
@@ -288,6 +311,7 @@ export const Screens = [
     route: 'AnimatedIndicatorList',
     component: AnimatedIndicatorList,
     iconMarginTop: 40,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons
         name="format-list-bulleted"
@@ -300,6 +324,7 @@ export const Screens = [
     route: 'RadarChart',
     component: RadarChartContainer,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="radar" {...DefaultIconProps} />,
   },
   {
@@ -308,6 +333,7 @@ export const Screens = [
     component: ImageCropper,
     backIconDark: false,
     iconMarginTop: 40,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="crop" {...DefaultIconProps} />,
   },
   {
@@ -315,6 +341,7 @@ export const Screens = [
     route: 'CustomDrawer',
     component: CustomDrawer,
     iconMarginTop: 30,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="menu" {...DefaultIconProps} />,
   },
   {
@@ -322,6 +349,7 @@ export const Screens = [
     route: 'SelectableGridList',
     component: SelectableGridList,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="select-all" {...DefaultIconProps} />
     ),
@@ -331,6 +359,7 @@ export const Screens = [
     route: 'AnimatedCountText',
     component: AnimatedCountText,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="counter" {...DefaultIconProps} />,
   },
   {
@@ -339,6 +368,7 @@ export const Screens = [
     component: QRCodeGenerator,
     backIconDark: false,
     alert: true,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons
         name="qrcode"
@@ -352,6 +382,7 @@ export const Screens = [
     route: 'PopupHandler',
     component: PopupHandler,
     alert: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons
         name="blur-radial"
@@ -365,18 +396,21 @@ export const Screens = [
     route: 'TwitterTabBar',
     component: TwitterTabBar,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="twitter" {...DefaultIconProps} />,
   },
   {
     name: 'Circular Carousel',
     route: 'CircularCarousel',
     component: CircularCarousel,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="circle" {...DefaultIconProps} />,
   },
   {
     name: 'Split Button',
     route: 'SplitButton',
     component: SplitButton,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons name="call-split" {...DefaultIconProps} />
     ),
@@ -387,6 +421,7 @@ export const Screens = [
     component: TelegramThemeSwitch,
     backIconDark: false,
     alert: true,
+    theme: 'dark',
     icon: () => (
       <FontAwesome name="telegram" {...DefaultIconProps} color={'yellow'} />
     ),
@@ -395,6 +430,7 @@ export const Screens = [
     name: 'Fourier Visualizer',
     route: 'FourierVisualizer',
     component: FourierVisualizer,
+    theme: 'dark',
     icon: () => <Octicons name="paintbrush" {...DefaultIconProps} />,
   },
   {
@@ -402,12 +438,14 @@ export const Screens = [
     route: 'GitHubOnboarding',
     component: GitHubOnboarding,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <Octicons name="mark-github" {...DefaultIconProps} />,
   },
   {
     name: 'Loading Button',
     route: 'LoadingButton',
     component: LoadingButton,
+    theme: 'light',
     icon: () => <AntDesign name="loading1" {...DefaultIconProps} />,
   },
   {
@@ -415,6 +453,7 @@ export const Screens = [
     route: 'ScrollableBottomSheet',
     component: ScrollableBottomSheet,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="arrow-up" {...DefaultIconProps} />
     ),
@@ -424,6 +463,7 @@ export const Screens = [
     route: 'SkiaColorPicker',
     component: SkiaColorPicker,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="palette" {...DefaultIconProps} />,
   },
   {
@@ -431,18 +471,21 @@ export const Screens = [
     route: 'BlurredScroll',
     component: BlurredScroll,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="blur" {...DefaultIconProps} />,
   },
   {
     name: 'AirBnb Slider',
     route: 'AirBnbSlider',
     component: AirbnbSlider,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="counter" {...DefaultIconProps} />,
   },
   {
     name: 'Steddy Graph Interaction',
     route: 'SteddyGraphInteraction',
     component: SteddyGraphInteraction,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons name="chart-line" {...DefaultIconProps} />
     ),
@@ -451,12 +494,14 @@ export const Screens = [
     name: 'Action Tray',
     route: 'ActionTray',
     component: ActionTray,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="card" {...DefaultIconProps} />,
   },
   {
     name: 'Toast',
     route: 'Toast',
     component: Toast,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="message" {...DefaultIconProps} />,
   },
   {
@@ -464,6 +509,7 @@ export const Screens = [
     route: 'SlideToReveal',
     component: SlideToReveal,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <Octicons name="number" {...DefaultIconProps} />,
   },
   {
@@ -471,6 +517,7 @@ export const Screens = [
     route: 'BlurredBottomBar',
     component: BlurredBottomBar,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="blur-linear" {...DefaultIconProps} />
     ),
@@ -479,12 +526,14 @@ export const Screens = [
     name: 'Fractal Glass',
     route: 'FractalGlass',
     component: FractalGlass,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="mirror" {...DefaultIconProps} />,
   },
   {
     name: 'Drag to Sort',
     route: 'DragToSort',
     component: DragToSort,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="sort" {...DefaultIconProps} />,
   },
   {
@@ -492,6 +541,7 @@ export const Screens = [
     route: 'FibonacciShader',
     component: FibonacciShader,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="sphere" {...DefaultIconProps} />,
   },
   {
@@ -499,6 +549,7 @@ export const Screens = [
     route: 'FamilyNumberInput',
     component: FamilyNumberInput,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="dots-grid" {...DefaultIconProps} />
     ),
@@ -508,6 +559,7 @@ export const Screens = [
     route: 'BalanceSlider',
     component: BalanceSlider,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="scale-balance" {...DefaultIconProps} />
     ),
@@ -517,6 +569,7 @@ export const Screens = [
     route: 'FibonacciShaderGrid',
     component: FibonacciShaderGrid,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="grid-large" {...DefaultIconProps} />
     ),
@@ -526,6 +579,7 @@ export const Screens = [
     route: 'VerificationCode',
     component: VerificationCode,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="security" {...DefaultIconProps} />
     ),
@@ -535,6 +589,7 @@ export const Screens = [
     route: 'EmailDemo',
     component: EmailDemo,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="delete" {...DefaultIconProps} />,
   },
   {
@@ -542,6 +597,7 @@ export const Screens = [
     route: 'ScrollTransition3D',
     component: ScrollTransition3D,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="rotate-3d" {...DefaultIconProps} />
     ),
@@ -550,6 +606,7 @@ export const Screens = [
     name: 'Staggered Card Number',
     route: 'StaggeredCardNumber',
     component: StaggeredCardNumber,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons
         name="credit-card-outline"
@@ -561,6 +618,7 @@ export const Screens = [
     name: 'Stacked Bottom Sheet',
     route: 'StackedBottomSheet',
     component: StackedBottomSheet,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="card" {...DefaultIconProps} />,
   },
   {
@@ -568,6 +626,7 @@ export const Screens = [
     route: 'GLTransitions',
     component: GLTransitions,
     iconMarginTop: 100,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="transition-masked" {...DefaultIconProps} />
     ),
@@ -577,6 +636,7 @@ export const Screens = [
     route: 'PrequelSlider',
     component: PrequelSlider,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons
         name="picture-in-picture-bottom-right"
@@ -590,6 +650,7 @@ export const Screens = [
     component: EmptyQRCode,
     backIconDark: true,
     alert: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons
         name="qrcode"
@@ -603,6 +664,7 @@ export const Screens = [
     route: 'InfiniteCarousel',
     component: InfiniteCarousel,
     backIconDark: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons
         name="view-carousel-outline"
@@ -615,6 +677,7 @@ export const Screens = [
     route: 'TwodosSlide',
     component: TwodosSlide,
     backIconDark: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons name="pan-right" {...DefaultIconProps} />
     ),
@@ -624,6 +687,7 @@ export const Screens = [
     route: 'WheelPicker',
     component: WheelPicker,
     backIconDark: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons name="ship-wheel" {...DefaultIconProps} />
     ),
@@ -633,6 +697,7 @@ export const Screens = [
     route: 'StackedList',
     component: StackedList,
     backIconDark: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons
         name="notification-clear-all"
@@ -645,6 +710,7 @@ export const Screens = [
     route: 'GeometryButton',
     component: GeometryButton,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="sphere" {...DefaultIconProps} />,
   },
   {
@@ -652,6 +718,7 @@ export const Screens = [
     route: 'RecordButton',
     component: RecordButton,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="record" {...DefaultIconProps} />,
   },
   {
@@ -660,6 +727,7 @@ export const Screens = [
     component: GridVisualizer,
     backIconDark: false,
     alert: true,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons
         name="grid"
@@ -674,6 +742,7 @@ export const Screens = [
     component: IMessageStack,
     backIconDark: false,
     alert: true,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons
         name="gesture-swipe"
@@ -687,6 +756,7 @@ export const Screens = [
     route: 'AtlasButton',
     component: AtlasButton,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="react" {...DefaultIconProps} />,
   },
   {
@@ -694,6 +764,7 @@ export const Screens = [
     route: 'CheckboxInteractions',
     component: CheckboxInteractions,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="checkbox-outline" {...DefaultIconProps} />
     ),
@@ -703,6 +774,7 @@ export const Screens = [
     route: 'InteractionAppearance',
     component: InteractionAppearance,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="theme-light-dark" {...DefaultIconProps} />
     ),
@@ -712,6 +784,7 @@ export const Screens = [
     route: 'DotSheet',
     component: DotSheet,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="paperclip" {...DefaultIconProps} />
     ),
@@ -721,6 +794,7 @@ export const Screens = [
     route: 'CoverflowCarousel',
     component: CoverflowCarousel,
     backIconDark: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons name="view-carousel" {...DefaultIconProps} />
     ),
@@ -731,6 +805,7 @@ export const Screens = [
     component: PaperFolding,
     backIconDark: true,
     alert: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons
         name="paper-roll"
@@ -744,6 +819,7 @@ export const Screens = [
     route: 'MilesBarChart',
     component: MilesBarChart,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="chart-bar" {...DefaultIconProps} />
     ),
@@ -753,6 +829,7 @@ export const Screens = [
     route: 'Steps',
     component: Steps,
     backIconDark: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons name="step-forward" {...DefaultIconProps} />
     ),
@@ -762,6 +839,7 @@ export const Screens = [
     route: 'PomodoroTimer',
     component: PomodoroTimer,
     backIconDark: false,
+    theme: 'dark',
     icon: () => (
       <MaterialCommunityIcons name="timer-outline" {...DefaultIconProps} />
     ),
@@ -771,6 +849,7 @@ export const Screens = [
     route: 'ExclusionTabs',
     component: ExclusionTabs,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="tab" {...DefaultIconProps} />,
   },
   {
@@ -778,6 +857,7 @@ export const Screens = [
     route: 'ClerkToast',
     component: ClerkToast,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="toaster" {...DefaultIconProps} />,
   },
   {
@@ -785,6 +865,7 @@ export const Screens = [
     route: 'DurationSlider',
     component: DurationSlider,
     backIconDark: true,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="timer" {...DefaultIconProps} />,
   },
   {
@@ -792,6 +873,7 @@ export const Screens = [
     route: 'AlertDrawer',
     component: AlertDrawer,
     backIconDark: true,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="alert" {...DefaultIconProps} />,
   },
   {
@@ -799,6 +881,7 @@ export const Screens = [
     route: 'MotionBlur',
     component: MotionBlur,
     backIconDark: true,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="blur" {...DefaultIconProps} />,
   },
   {
@@ -806,6 +889,7 @@ export const Screens = [
     route: 'LinearTabInteraction',
     component: LinearTabInteraction,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="tab" {...DefaultIconProps} />,
   },
   {
@@ -813,6 +897,7 @@ export const Screens = [
     route: 'DeleteButton',
     component: DeleteButton,
     backIconDark: true,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="delete" {...DefaultIconProps} />,
   },
   {
@@ -820,6 +905,7 @@ export const Screens = [
     route: 'DynamicBlurTabs',
     component: DynamicBlurTabs,
     backIconDark: true,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="blur" {...DefaultIconProps} />,
   },
   {
@@ -827,6 +913,7 @@ export const Screens = [
     route: 'Snake',
     component: Snake,
     backIconDark: true,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="snake" {...DefaultIconProps} />,
   },
   {
@@ -834,6 +921,7 @@ export const Screens = [
     route: 'ExpandableMiniPlayer',
     component: ExpandableMiniPlayer,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="music" {...DefaultIconProps} />,
   },
   {
@@ -841,6 +929,7 @@ export const Screens = [
     route: 'BezierCurveOutline',
     component: BezierCurveOutline,
     backIconDark: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons name="vector-bezier" {...DefaultIconProps} />
     ),
@@ -850,6 +939,7 @@ export const Screens = [
     route: 'TabNavigation',
     component: TabNavigation,
     backIconDark: true,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="tab" {...DefaultIconProps} />,
   },
   {
@@ -857,6 +947,7 @@ export const Screens = [
     route: 'StackedModals',
     component: StackedModals,
     backIconDark: true,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="card" {...DefaultIconProps} />,
   },
   {
@@ -864,6 +955,7 @@ export const Screens = [
     route: 'VerificationCodeFace',
     component: VerificationCodeFace,
     backIconDark: true,
+    theme: 'light',
     icon: () => (
       <MaterialCommunityIcons name="baby-face" {...DefaultIconProps} />
     ),
@@ -873,6 +965,7 @@ export const Screens = [
     route: 'EverybodyCanCook',
     component: EverybodyCanCook,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="food" {...DefaultIconProps} />,
   },
   {
@@ -880,6 +973,7 @@ export const Screens = [
     route: 'ThreadsHoloTicket',
     component: ThreadsHoloTicket,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="ticket" {...DefaultIconProps} />,
   },
   {
@@ -887,6 +981,7 @@ export const Screens = [
     route: 'FluidTabInteraction',
     component: FluidTabInteraction,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="blur" {...DefaultIconProps} />,
   },
   {
@@ -894,6 +989,7 @@ export const Screens = [
     route: 'ShakeToDelete',
     component: ShakeToDeleteAnimation,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="shaker" {...DefaultIconProps} />,
   },
   {
@@ -901,6 +997,7 @@ export const Screens = [
     route: 'ComposableText',
     component: ComposableTextScreen,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="text" {...DefaultIconProps} />,
   },
   {
@@ -908,6 +1005,7 @@ export const Screens = [
     route: 'CardShaderReflections',
     component: CardShaderReflections,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="card" {...DefaultIconProps} />,
   },
   {
@@ -915,6 +1013,7 @@ export const Screens = [
     route: 'ClockTimePicker',
     component: ClockTimePicker,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="clock" {...DefaultIconProps} />,
   },
   {
@@ -922,6 +1021,7 @@ export const Screens = [
     route: 'Sudoku',
     component: Sudoku,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="grid" {...DefaultIconProps} />,
   },
   {
@@ -929,6 +1029,7 @@ export const Screens = [
     route: 'ParticlesButton',
     component: ParticlesButton,
     backIconDark: false,
+    theme: 'dark',
     icon: () => <MaterialCommunityIcons name="atom" {...DefaultIconProps} />,
   },
   {
@@ -936,6 +1037,7 @@ export const Screens = [
     route: 'iOSHomeGrid',
     component: iOSHomeGrid,
     backIconDark: false,
+    theme: 'light',
     icon: () => <MaterialCommunityIcons name="react" {...DefaultIconProps} />,
   },
 ]

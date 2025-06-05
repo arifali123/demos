@@ -12,7 +12,7 @@ import type { Screens } from '../screens';
 import { ActiveScreensAtom } from '../states/filters';
 
 import { GridItem } from './components/grid-item';
-import { getColorForIndex } from './constants';
+import { getColorForItem } from './constants';
 import { useCustomNavigation } from './navigation/expansion-provider';
 
 /** Grid layout constants */
@@ -100,7 +100,7 @@ const HomeGrid = React.memo(() => {
             layout={LinearTransition}>
             {row.map((item, itemIndex) => {
               const globalIndex = rowIndex * NUM_COLUMNS + itemIndex;
-              const colorPalette = getColorForIndex(globalIndex);
+              const colorPalette = getColorForItem(item, globalIndex);
 
               return (
                 <GridItem

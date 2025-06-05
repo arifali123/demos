@@ -83,13 +83,25 @@ const GridItem: React.FC<GridItemProps> = React.memo(
         float blob1 = 1.0 - smoothstep(0.0, 0.6, dist1);
         float blob2 = 1.0 - smoothstep(0.0, 0.4, dist2);
         
-        // Chromatic-like color shifting
-        vec3 baseColor = color * 0.6; // Darker base
+        // Base color - keep it neutral
+        vec3 baseColor = color * 0.6;
         
-        // Create color variations like chromatic wallpapers
-        vec3 color1 = baseColor * vec3(1.2, 0.8, 0.9); // Warm tint
-        vec3 color2 = baseColor * vec3(0.8, 0.9, 1.2); // Cool tint
-        vec3 color3 = baseColor * vec3(0.9, 1.1, 0.8); // Green tint
+        // Detect if color is light (white/light grey) and reduce color variations
+        float colorBrightness = (color.r + color.g + color.b) / 3.0;
+        bool isLightTheme = colorBrightness > 0.9;
+        
+        vec3 color1, color2, color3;
+        if (isLightTheme) {
+          // For light themes, keep variations minimal and neutral
+          color1 = baseColor * vec3(1.05, 1.05, 1.05); // Very subtle variation
+          color2 = baseColor * vec3(0.98, 0.98, 0.98); // Very subtle variation
+          color3 = baseColor * vec3(1.02, 1.02, 1.02); // Very subtle variation
+        } else {
+          // For dark themes, use the original color variations
+          color1 = baseColor * vec3(1.2, 0.8, 0.9); // Warm tint
+          color2 = baseColor * vec3(0.8, 0.9, 1.2); // Cool tint
+          color3 = baseColor * vec3(0.9, 1.1, 0.8); // Green tint
+        }
         
         // Smooth noise for organic texture
         float organicNoise = 0.0;
@@ -107,11 +119,12 @@ const GridItem: React.FC<GridItemProps> = React.memo(
         vec3 finalColor = mix(color1, color2, blob1);
         finalColor = mix(finalColor, color3, blob2 * 0.5);
         
-        // Add organic noise with elegant intensity
-        finalColor += vec3(organicNoise * 0.08 - 0.04);
+        // Reduce noise intensity for light themes
+        float noiseIntensity = isLightTheme ? 0.04 : 0.08;
+        finalColor += vec3(organicNoise * noiseIntensity - noiseIntensity * 0.5);
         
-        // Add subtle chromatic aberration effect
-        float aberration = 0.002;
+        // Reduce chromatic aberration for light themes
+        float aberration = isLightTheme ? 0.001 : 0.002;
         finalColor.r += sin(dist1 * 10.0 + time) * aberration;
         finalColor.g += cos(dist2 * 8.0 + time * 1.1) * aberration;
         finalColor.b += sin((dist1 + dist2) * 6.0 + time * 0.9) * aberration;
