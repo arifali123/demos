@@ -1,8 +1,8 @@
-# Skia Icons Generator
+# Skia Icons Generator v2.0 - Current System
 
 ## Overview
 
-This project generates app icons using Headless Skia rendering. It creates various icon formats (standard icon, splash screen, adaptive icon) with procedural spiral patterns and text overlays.
+This is a simple icon generation system using Headless Skia rendering. Each theme generates a single 1024x1024 PNG icon with zero configuration required.
 
 ## Current Architecture
 
@@ -10,69 +10,48 @@ This project generates app icons using Headless Skia rendering. It creates vario
 ```
 scripts/skia-icons/
 ├── src/
-│   ├── app-icon/
-│   │   ├── index.tsx      # Main AppIcon component
-│   │   ├── spiral.tsx     # Logarithmic spiral generation
-│   │   └── grid.tsx       # Grid overlay component
-│   └── scripts/
-│       └── icons-set.tsx  # Icon generation script
+│   ├── icons/
+│   │   └── ios-home-grid/     # First theme
+│   │       └── index.tsx      # Simple React component
+│   ├── shared/
+│   │   ├── constants.ts       # ICON_SIZE = 1024
+│   │   └── types.ts           # CommandLineArgs interface
+│   └── generator.ts           # Main generation script
 ├── assets/
-│   └── SF-Pro-Rounded-Bold.otf  # Font file
-├── build/                 # Compiled TypeScript output
+│   ├── SF-Pro-Rounded-Bold.otf  # Font file (currently unused)
+│   └── ios-home-grid.png      # Generated icon
+├── build/                     # Compiled TypeScript output
 ├── package.json
 └── tsconfig.json
 ```
 
 ### Current Components
 
-#### AppIcon (`src/app-icon/index.tsx`)
-Main component that combines all visual elements:
-- **Props**: `width`, `height`, `Skia`, `grid`, `background`, `fadedSpiral`, `randomFactor`, `font`, `text`, `fontSize`, `scaleSpiral`
-- **Features**:
-  - Blue gradient background (#0290FE to #0048EC)
-  - Optional grid overlay
-  - Logarithmic spiral pattern
-  - Text with blur effects and stroke
+#### Icons
+Each icon is a simple React component that:
+- Takes no parameters
+- Uses ICON_SIZE (1024) from shared constants
+- Renders directly with Skia components
+- Is automatically discovered by the generator
 
-#### Spiral (`src/app-icon/spiral.tsx`)
-Generates procedural logarithmic spiral patterns:
-- **Algorithm**: Uses logarithmic spiral formula with exponential growth
-- **Customization**: Supports scaling, fading, and randomization
-- **Rendering**: Creates circles along the spiral path with varying radii
-
-#### Grid (`src/app-icon/grid.tsx`)
-Creates a dashed grid overlay:
-- **Pattern**: 4x4 grid with dashed lines
-- **Styling**: White color with 30% opacity
-- **Effects**: Uses DashPathEffect for dashed appearance
-
-### Icon Generation (`src/scripts/icons-set.tsx`)
-
-#### Generated Icons
-1. **icon** (1024x1024) - Standard app icon with faded spiral
-2. **splash** (1284x2778) - Splash screen without grid/background, scaled spiral
-3. **adaptive-icon** (1024x1024) - Adaptive icon without background
-
-#### Command Line Interface
-```bash
-yarn generate-icons --value="Custom Text"
-```
-- Accepts `--value` parameter for custom text (defaults to ":)")
-- Uses SF Pro Rounded Bold font at 500px size
-- Applies random factor for spiral variation
+#### Generator (`src/generator.ts`)
+- Scans `src/icons/` for theme folders
+- Dynamically imports icon components
+- Creates 1024x1024 surfaces
+- Saves PNG files to `assets/`
 
 ### Key Features
 
-#### Visual Elements
-- **Gradient Background**: Linear gradient from light to dark blue
-- **Spiral Pattern**: Procedurally generated logarithmic spiral with 3000 points
-- **Text Rendering**: Custom text with stroke, blur, and shadow effects
-- **Grid Overlay**: Optional dashed grid for visual structure
+#### Simplicity
+- **No Configuration**: Just create a folder with index.tsx
+- **No Parameters**: Icons are pure components
+- **Auto Discovery**: Generator finds themes automatically
+- **Fixed Size**: All icons are 1024x1024 pixels
 
 #### Technical Implementation
 - **Headless Rendering**: Uses @shopify/react-native-skia headless mode
-- **Surface Management**: Creates offscreen surfaces for each icon
-- **File Output**: Exports PNG files to assets directory
+- **Dynamic Imports**: Components loaded at runtime
+- **Error Handling**: Individual theme failures don't stop generation
 - **Memory Management**: Properly disposes of surfaces and images
 
 ## Dependencies
@@ -85,51 +64,43 @@ yarn generate-icons --value="Custom Text"
 ## Usage
 
 1. **Install dependencies**: `yarn install`
-2. **Build project**: `yarn build`
-3. **Generate icons**: `yarn generate-icons --value="Your Text"`
+2. **Build project**: `yarn build` or `npx tsc`
+3. **Generate all icons**: `node build/generator.js`
+4. **Generate specific theme**: `node build/generator.js --theme=ios-home-grid`
 
 ## Output
 
-Generated icons are saved to `../../assets/` directory:
-- `icon.png` - 1024x1024 standard icon
-- `splash.png` - 1284x2778 splash screen
-- `adaptive-icon.png` - 1024x1024 adaptive icon
+Generated icons are saved to `skia-icons/assets/`:
+- `{theme-name}.png` - 1024x1024 PNG file
 
-## Mathematical Foundation
+## Adding New Themes
 
-The spiral generation uses the logarithmic spiral equation:
-```
-r = a * e^(k*θ)
-x = r * cos(θ)
-y = r * sin(θ)
-```
+1. Create folder: `src/icons/your-theme-name/`
+2. Create file: `src/icons/your-theme-name/index.tsx`
+3. Export component named after your theme: `YourThemeNameIcon`
+4. Use `ICON_SIZE` from `../../shared/constants`
+5. Run generator - theme will be auto-discovered
 
-Where:
-- `a` = index/4 (scaling factor)
-- `k` = 0.005 (growth rate)
-- `θ` = angle * index (rotation)
+## Example Theme
 
-This creates organic, naturally-flowing spiral patterns with mathematical precision.
+```tsx
+// src/icons/simple-circle/index.tsx
+import { Group, Circle } from '@shopify/react-native-skia/lib/commonjs/headless';
+import React from 'react';
+import { ICON_SIZE } from '../../shared/constants';
 
----
-
-## Future Refactor Vision
-
-The project will be restructured to support multiple icon themes, with each theme in its own folder:
-
-### New Architecture
-```
-scripts/skia-icons/
-├── src/
-│   ├── icons/
-│   │   ├── ios-home-grid/    # iOS-inspired rounded squares
-│   │   ├── material-design/  # Material Design icons
-│   │   ├── minimalist/       # Clean, simple designs
-│   │   └── ...               # Additional themes
-│   ├── shared/
-│   │   ├── utils/           # Common utilities
-│   │   └── types.ts         # Shared TypeScript types
-│   └── generator.ts         # Main generation script
+export const SimpleCircleIcon: React.FC = () => {
+  return (
+    <Group>
+      <Circle 
+        cx={ICON_SIZE / 2} 
+        cy={ICON_SIZE / 2} 
+        r={ICON_SIZE / 3} 
+        color="#3498db" 
+      />
+    </Group>
+  );
+};
 ```
 
-Each icon theme will contain its own complete implementation with customizable parameters and unique visual styles.
+This will generate `assets/simple-circle.png` when you run the generator.

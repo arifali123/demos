@@ -9,6 +9,7 @@ const path_1 = __importDefault(require("path"));
 const LoadSkiaWeb_1 = require("@shopify/react-native-skia/lib/commonjs/web/LoadSkiaWeb");
 const headless_1 = require("@shopify/react-native-skia/lib/commonjs/headless");
 const react_1 = __importDefault(require("react"));
+const constants_1 = require("./shared/constants");
 // Dynamically discover available themes
 const getAvailableThemes = () => {
     const iconsDir = path_1.default.join(__dirname, 'icons');
@@ -44,10 +45,6 @@ const themesToGenerate = theme ? [theme] : availableThemes;
         console.log(`🔧 Generating: ${themesToGenerate.join(', ')}`);
         await (0, LoadSkiaWeb_1.LoadSkiaWeb)();
         const { Skia } = (0, headless_1.getSkiaExports)();
-        // Load font
-        const fontData = Skia.Data.fromBytes(fs_1.default.readFileSync(require.resolve('../assets/SF-Pro-Rounded-Bold.otf')));
-        const typeface = Skia.Typeface.MakeFreeTypeFaceFromData(fontData);
-        const font = Skia.Font(typeface, 500);
         // Ensure assets directory exists
         const assetsDir = path_1.default.join(__dirname, '../assets');
         if (!fs_1.default.existsSync(assetsDir)) {
@@ -66,14 +63,9 @@ const themesToGenerate = theme ? [theme] : availableThemes;
                     console.error(`❌ No icon component found in ${themeName}/index.tsx`);
                     continue;
                 }
-                // Create 1024x1024 surface
-                const surface = (0, headless_1.makeOffscreenSurface)(1024, 1024);
-                const iconImage = await (0, headless_1.drawOffscreen)(surface, react_1.default.createElement(IconComponent, {
-                    width: 1024,
-                    height: 1024,
-                    Skia,
-                    font,
-                }));
+                // Create surface
+                const surface = (0, headless_1.makeOffscreenSurface)(constants_1.ICON_SIZE, constants_1.ICON_SIZE);
+                const iconImage = await (0, headless_1.drawOffscreen)(surface, react_1.default.createElement(IconComponent));
                 // Save the image
                 const base64Image = iconImage.encodeToBase64();
                 const buffer = Buffer.from(base64Image, 'base64');

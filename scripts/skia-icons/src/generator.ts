@@ -11,6 +11,7 @@ import {
 import React from 'react';
 
 import type { CommandLineArgs } from './shared/types';
+import { ICON_SIZE } from './shared/constants';
 
 // Dynamically discover available themes
 const getAvailableThemes = (): string[] => {
@@ -56,13 +57,6 @@ const themesToGenerate = theme ? [theme] : availableThemes;
     await LoadSkiaWeb();
     const { Skia } = getSkiaExports();
 
-    // Load font
-    const fontData = Skia.Data.fromBytes(
-      fs.readFileSync(require.resolve('../assets/SF-Pro-Rounded-Bold.otf')),
-    );
-    const typeface = Skia.Typeface.MakeFreeTypeFaceFromData(fontData);
-    const font = Skia.Font(typeface!, 500);
-
     // Ensure assets directory exists
     const assetsDir = path.join(__dirname, '../assets');
     if (!fs.existsSync(assetsDir)) {
@@ -85,17 +79,12 @@ const themesToGenerate = theme ? [theme] : availableThemes;
           continue;
         }
 
-        // Create 1024x1024 surface
-        const surface = makeOffscreenSurface(1024, 1024);
+        // Create surface
+        const surface = makeOffscreenSurface(ICON_SIZE, ICON_SIZE);
         
         const iconImage = await drawOffscreen(
           surface,
-          React.createElement(IconComponent, {
-            width: 1024,
-            height: 1024,
-            Skia,
-            font,
-          })
+          React.createElement(IconComponent)
         );
 
         // Save the image

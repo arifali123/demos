@@ -1,72 +1,61 @@
 import {
   LinearGradient,
   Group,
-  RoundedRect,
+  Rect,
 } from '@shopify/react-native-skia/lib/commonjs/headless';
 import React from 'react';
 
-import type { IconGenerationProps } from '../../shared/types';
+import { ICON_SIZE } from '../../shared/constants';
 
-export const iOSHomeGridIcon: React.FC<IconGenerationProps> = ({
-  width,
-  height,
-  Skia,
-}) => {
-  const size = 1024; // Fixed size
-  const cornerRadius = 180; // iOS-style corner radius for 1024px icon
-  
+export const iOSHomeGridIcon: React.FC = () => {
   return (
     <Group>
       {/* Main icon background */}
-      <RoundedRect
+      <Rect
         x={0}
         y={0}
-        width={size}
-        height={size}
-        r={cornerRadius}>
+        width={ICON_SIZE}
+        height={ICON_SIZE}>
         <LinearGradient
           start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: size }}
+          end={{ x: 0, y: ICON_SIZE }}
           colors={['#E8E9ED', '#B8B9BD']} // Brushed Steel palette
         />
-      </RoundedRect>
+      </Rect>
 
       {/* Top highlight for depth */}
-      <RoundedRect
+      <Rect
         x={0}
         y={0}
-        width={size}
-        height={size * 0.5}
-        r={cornerRadius}>
+        width={ICON_SIZE}
+        height={ICON_SIZE * 0.5}>
         <LinearGradient
           start={{ x: 0, y: 0 }}
-          end={{ x: 0, y: size * 0.5 }}
+          end={{ x: 0, y: ICON_SIZE * 0.5 }}
           colors={[
             '#E8E9ED40', // 25% opacity highlight
             '#E8E9ED10', // 6% opacity
           ]}
         />
-      </RoundedRect>
+      </Rect>
 
       {/* Subtle inner glow effect */}
-      <RoundedRect
+      <Rect
         x={2}
         y={2}
-        width={size - 4}
-        height={size - 4}
-        r={cornerRadius - 2}
+        width={ICON_SIZE - 4}
+        height={ICON_SIZE - 4}
         style="stroke"
         strokeWidth={1}
         color="#E8E9ED30"
       />
 
       {/* Outer border for definition */}
-      <RoundedRect
+      <Rect
         x={0}
         y={0}
-        width={size}
-        height={size}
-        r={cornerRadius}
+        width={ICON_SIZE}
+        height={ICON_SIZE}
         style="stroke"
         strokeWidth={1}
         color="#B8B9BD60"
