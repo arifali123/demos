@@ -1,94 +1,147 @@
-import React, { useCallback } from 'react';
-import type { ListRenderItem, ViewToken } from 'react-native';
-import { StyleSheet } from 'react-native';
+import React, { useCallback, useMemo } from 'react';
+import { StyleSheet, useWindowDimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import Animated, { useSharedValue } from 'react-native-reanimated';
+import Animated, {
+  LinearTransition,
+  useAnimatedStyle,
+} from 'react-native-reanimated';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAtomValue } from 'jotai';
 
 import type { Screens } from '../screens';
 import { ActiveScreensAtom } from '../states/filters';
 
-import { ListItem } from './components/list-item';
+import { GridItem } from './components/grid-item';
+import { getColorForIndex } from './constants';
+import { useCustomNavigation } from './navigation/expansion-provider';
 
-const LIST_ITEM_HEIGHT = 80;
-const LIST_ITEM_MARGIN_TOP = 10;
+/** Grid layout constants */
+const SPACING = 12;
+const NUM_COLUMNS = 4;
 
-const Home = React.memo(() => {
+const HomeGrid = React.memo(() => {
   const navigation = useNavigation();
+  const { width: screenWidth } = useWindowDimensions();
+  const { top: safeTop } = useSafeAreaInsets();
 
-  const viewableItems = useSharedValue<ViewToken[]>([]);
+  /**
+   * Calculate layout dimensions based on screen width
+   */
+  const layoutConfig = useMemo(() => {
+    const horizontalPadding = SPACING * 2;
+    const availableWidth = screenWidth - horizontalPadding;
 
-  const onViewableItemsChanged = useCallback(
-    ({ viewableItems: vItems }: { viewableItems: ViewToken[] }) => {
-      viewableItems.value = vItems;
-    },
-    [viewableItems],
-  );
+    // Calculate item size based on available width and fixed number of columns
+    const totalSpacing = SPACING * (NUM_COLUMNS - 1);
+    const itemSize = Math.floor((availableWidth - totalSpacing) / NUM_COLUMNS);
 
-  const renderItem: ListRenderItem<(typeof Screens)[number]> = useCallback(
-    ({ item }) => {
-      return (
-        <ListItem
-          style={styles.listItem}
-          item={item}
-          viewableItems={viewableItems}
-          onPress={() => {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            navigation.navigate(item.route);
-          }}
-        />
-      );
-    },
-    [navigation, viewableItems],
-  );
+    return {
+      itemSize,
+      spacing: SPACING,
+      containerPadding: horizontalPadding / 2,
+    };
+  }, [screenWidth]);
 
   const data = useAtomValue(ActiveScreensAtom);
 
-  const getItemLayout = useCallback(
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    (_: any, index: number) => ({
-      length: LIST_ITEM_HEIGHT,
-      offset: LIST_ITEM_HEIGHT * index + LIST_ITEM_MARGIN_TOP * index,
-      index,
-    }),
-    [],
+  /**
+   * Group items into rows for proper grid layout
+   */
+  const itemRows = useMemo(() => {
+    const rows = [];
+    for (let i = 0; i < data.length; i += NUM_COLUMNS) {
+      rows.push(data.slice(i, i + NUM_COLUMNS));
+    }
+    return rows;
+  }, [data]);
+
+  const handleItemPress = useCallback(
+    (item: (typeof Screens)[number]) => {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
+      navigation.navigate(item.route);
+    },
+    [navigation],
   );
 
-  const keyExtractor = useCallback(
-    (item: (typeof Screens)[number]) => item.route,
-    [],
-  );
+  const { springProgress } = useCustomNavigation();
+  const rStyle = useAnimatedStyle(() => {
+    return {
+      transform: [
+        { scale: 1 - springProgress.value * 0.05 },
+        {
+          translateY: springProgress.value * 5,
+        },
+      ],
+    };
+  });
 
   return (
-    <Animated.FlatList
-      onViewableItemsChanged={onViewableItemsChanged}
-      viewabilityConfig={viewabilityConfig}
-      keyExtractor={keyExtractor}
-      data={data}
-      scrollEventThrottle={16}
-      style={styles.container}
-      keyboardDismissMode={'on-drag'}
-      contentContainerStyle={styles.content}
-      contentInsetAdjustmentBehavior="automatic"
-      renderItem={renderItem}
-      getItemLayout={getItemLayout}
-    />
+    <Animated.View style={[rStyle, styles.container]}>
+      <Animated.ScrollView
+        contentContainerStyle={[
+          styles.gridContainer,
+          {
+            paddingTop: safeTop + 20,
+            paddingHorizontal: layoutConfig.containerPadding,
+            paddingBottom: 150,
+          },
+        ]}
+        layout={LinearTransition}
+        showsVerticalScrollIndicator={false}>
+        {itemRows.map((row, rowIndex) => (
+          <Animated.View
+            key={rowIndex}
+            style={[
+              styles.row,
+              // Only center if the row has the full number of columns
+              row.length < NUM_COLUMNS && { justifyContent: 'flex-start' },
+            ]}
+            layout={LinearTransition}>
+            {row.map((item, itemIndex) => {
+              const globalIndex = rowIndex * NUM_COLUMNS + itemIndex;
+              const colorPalette = getColorForIndex(globalIndex);
+
+              return (
+                <GridItem
+                  key={item.route}
+                  item={item}
+                  colors={colorPalette.colors}
+                  style={[
+                    {
+                      width: layoutConfig.itemSize,
+                      height: layoutConfig.itemSize + 30, // Extra height for label
+                      padding: SPACING / 2,
+                    },
+                    itemIndex < row.length - 1 && {
+                      marginRight: layoutConfig.spacing,
+                    },
+                  ]}
+                  onPress={() => handleItemPress(item)}
+                />
+              );
+            })}
+          </Animated.View>
+        ))}
+      </Animated.ScrollView>
+    </Animated.View>
   );
 });
 
-const viewabilityConfig = {
-  itemVisiblePercentThreshold: 50,
-  minimumViewTime: 100,
-};
-
 const styles = StyleSheet.create({
-  content: {
-    paddingTop: 3,
-    paddingBottom: 150,
+  container: {
+    flex: 1,
+    backgroundColor: '#fafafa',
   },
-  container: { backgroundColor: 'black' },
-  listItem: { height: LIST_ITEM_HEIGHT, marginTop: LIST_ITEM_MARGIN_TOP },
+  gridContainer: {
+    flexGrow: 1,
+    width: '100%',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: SPACING,
+  },
 });
 
-export { Home };
+export { HomeGrid as Home };
