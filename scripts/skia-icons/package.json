@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "generate": "yarn build && node build/generator.js",
+    "generate": "tsc && node build/generator.js",
     "generate:ios-home-grid": "yarn build && node build/generator.js --theme=ios-home-grid",
     "clean": "rm -rf build",
     "dev": "tsc --watch"

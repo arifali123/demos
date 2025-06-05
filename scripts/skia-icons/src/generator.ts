@@ -70,12 +70,22 @@ const themesToGenerate = theme ? [theme] : availableThemes;
 
         // Dynamically import the theme component
         const themePath = path.join(__dirname, 'icons', themeName);
-        const IconComponent = require(themePath).iOSHomeGridIcon || 
-                             require(themePath)[`${themeName}Icon`] ||
-                             require(themePath).default;
+        const moduleExports = require(themePath);
+        
+        // Try multiple naming patterns for icon components
+        const IconComponent = 
+          moduleExports.iOSHomeGridIcon ||
+          moduleExports.ThreeDScrollTransitionIcon ||
+          moduleExports[`${themeName}Icon`] ||
+          moduleExports[`${themeName.replace(/-/g, '')}Icon`] ||
+          moduleExports.default ||
+          Object.values(moduleExports).find((exp: any) => 
+            typeof exp === 'function' && exp.name && exp.name.includes('Icon')
+          );
 
         if (!IconComponent) {
           console.error(`❌ No icon component found in ${themeName}/index.tsx`);
+          console.error(`Available exports:`, Object.keys(moduleExports));
           continue;
         }
 
@@ -111,4 +121,4 @@ const themesToGenerate = theme ? [theme] : availableThemes;
     console.error('❌ Fatal error:', error);
     process.exit(1);
   }
-})(); 
+})();
