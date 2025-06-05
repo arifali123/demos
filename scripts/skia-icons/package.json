@@ -1,11 +1,15 @@
 {
-  "name": "node-react",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "skia-icons-generator",
+  "version": "2.0.0",
+  "description": "Generate beautiful icons using Headless Skia with multiple themes",
+  "main": "build/generator.js",
   "license": "MIT",
   "scripts": {
     "build": "tsc",
-    "generate-icons": "yarn build && node build/scripts/icons-set.js"
+    "generate": "yarn build && node build/generator.js",
+    "generate:ios-home-grid": "yarn build && node build/generator.js --theme=ios-home-grid",
+    "clean": "rm -rf build",
+    "dev": "tsc --watch"
   },
   "devDependencies": {
     "@shopify/react-native-skia": "v2.0.0-next.4",

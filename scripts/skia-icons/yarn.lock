@@ -67,18 +67,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"node-react@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "node-react@workspace:."
-  dependencies:
-    "@shopify/react-native-skia": "npm:v2.0.0-next.4"
-    "@types/node": "npm:^22.5.4"
-    "@types/react": "npm:^19.0.10"
-    react: "npm:^19.0.0"
-    typescript: "npm:^5.5.4"
-  languageName: unknown
-  linkType: soft
-
 "react-reconciler@npm:0.31.0":
   version: 0.31.0
   resolution: "react-reconciler@npm:0.31.0"
@@ -103,6 +91,18 @@ __metadata:
   checksum: 10c0/a4bb1da406b613ce72c1299db43759526058fdcc413999c3c3e0db8956df7633acf395cb20eb2303b6a65d658d66b6585d344460abaee8080b4aa931f10eaafe
   languageName: node
   linkType: hard
+
+"skia-icons-generator@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "skia-icons-generator@workspace:."
+  dependencies:
+    "@shopify/react-native-skia": "npm:v2.0.0-next.4"
+    "@types/node": "npm:^22.5.4"
+    "@types/react": "npm:^19.0.10"
+    react: "npm:^19.0.0"
+    typescript: "npm:^5.5.4"
+  languageName: unknown
+  linkType: soft
 
 "typescript@npm:^5.5.4":
   version: 5.8.3
