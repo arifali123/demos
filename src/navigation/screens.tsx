@@ -114,6 +114,7 @@ import { ParticlesButton } from '../animations/particles-button';
 import { iOSHomeGrid } from '../animations/ios-home-grid';
 
 import { withCustomBackIcon } from './with-custom-back-icon-hoc';
+import { TimeMachine } from '../animations/time-machine';
 
 const ICON_SIZE = 24;
 const ICON_COLOR = 'white';
@@ -1038,7 +1039,16 @@ export const Screens = [
     component: iOSHomeGrid,
     backIconDark: false,
     theme: 'light',
-    icon: () => <MaterialCommunityIcons name="react" {...DefaultIconProps} />,
+    icon: () => (
+      <MaterialCommunityIcons name="grid-large" {...DefaultIconProps} />
+    ),
+  },
+  {
+    name: 'Time Machine',
+    route: 'TimeMachine',
+    component: TimeMachine,
+    backIconDark: false,
+    icon: () => <MaterialCommunityIcons name="timelapse" {...DefaultIconProps} />,
   },
 ]
   .map((item, index) => {
