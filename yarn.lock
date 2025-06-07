@@ -1115,6 +1115,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@babel/types@npm:^7.26.0":
+  version: 7.27.6
+  resolution: "@babel/types@npm:7.27.6"
+  dependencies:
+    "@babel/helper-string-parser": "npm:^7.27.1"
+    "@babel/helper-validator-identifier": "npm:^7.27.1"
+  checksum: 10c0/39d556be114f2a6d874ea25ad39826a9e3a0e98de0233ae6d932f6d09a4b222923a90a7274c635ed61f1ba49bbd345329226678800900ad1c8d11afabd573aaf
+  languageName: node
+  linkType: hard
+
 "@egjs/hammerjs@npm:^2.0.17":
   version: 2.0.17
   resolution: "@egjs/hammerjs@npm:2.0.17"
@@ -3385,6 +3395,15 @@ __metadata:
   peerDependencies:
     "@babel/core": ^7.4.0 || ^8.0.0-0 <8.0.0
   checksum: 10c0/ebaaf9e4e53201c02f496d3f686d815e94177b3e55b35f11223b99c60d197a29f907a2e87bbcccced8b7aff22a807fccc1adaf04722864a8e1862c8845ab830a
+  languageName: node
+  linkType: hard
+
+"babel-plugin-react-compiler@npm:19.0.0-beta-af1b7da-20250417":
+  version: 19.0.0-beta-af1b7da-20250417
+  resolution: "babel-plugin-react-compiler@npm:19.0.0-beta-af1b7da-20250417"
+  dependencies:
+    "@babel/types": "npm:^7.26.0"
+  checksum: 10c0/dee0a398be02afc6fa35199ef4d8c30025adcaa7056f56130601254c45d8ee8f06730d4e17e26a3f7f0711eef1323a1e6c01a76ac7516f0c34766bfa27fc92e1
   languageName: node
   linkType: hard
 
@@ -9934,6 +9953,7 @@ __metadata:
     "@types/react": "npm:~19.0.10"
     "@typescript-eslint/eslint-plugin": "npm:^6.7.0"
     "@typescript-eslint/parser": "npm:^6.7.0"
+    babel-plugin-react-compiler: "npm:19.0.0-beta-af1b7da-20250417"
     color: "npm:^4.2.3"
     date-fns: "npm:^3.6.0"
     eslint: "npm:^8.56.0"
