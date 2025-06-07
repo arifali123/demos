@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import type { StyleProp, ViewStyle } from 'react-native';
 import { StyleSheet, Text, View } from 'react-native';
 import Animated, {
@@ -6,6 +6,7 @@ import Animated, {
   FadeOut,
   LinearTransition,
 } from 'react-native-reanimated';
+import { getColors } from 'react-native-image-colors';
 
 import type { Screens } from '../../screens';
 import { NavigationItem } from '../navigation/navigation-item';
@@ -34,12 +35,45 @@ const ICON_MAPPINGS: Record<string, any> = {
 
 const GridItem: React.FC<GridItemProps> = React.memo(
   ({ item, onPress, style, colors }) => {
+    const [extractedColors, setExtractedColors] = useState<{
+      primary: string;
+      background: string;
+    }>({ primary: colors[0], background: colors[0] });
+
     const handleNavigate = useCallback(() => {
       onPress();
     }, [onPress]);
 
     const backgroundImageSource =
       ICON_MAPPINGS[item.name.toLowerCase().split(' ').join('-')];
+
+    // This has to be precomputed since it won't work on Expo Go
+    useEffect(() => {
+      if (backgroundImageSource) {
+        getColors(backgroundImageSource, {
+          fallback: colors[0],
+          cache: true,
+          key: item.name,
+        })
+          .then(result => {
+            if (result.platform === 'ios') {
+              setExtractedColors({
+                primary: result.primary,
+                background: result.background,
+              });
+            } else if (result.platform === 'android') {
+              setExtractedColors({
+                primary: result.dominant || colors[0],
+                background: result.vibrant || colors[0],
+              });
+            }
+          })
+          .catch(() => {
+            // Fallback to original colors if extraction fails
+            setExtractedColors({ primary: colors[0], background: colors[0] });
+          });
+      }
+    }, [backgroundImageSource, colors, item.name]);
 
     return (
       <Animated.View
@@ -53,15 +87,13 @@ const GridItem: React.FC<GridItemProps> = React.memo(
           onNavigate={handleNavigate}
           config={{
             borderRadius: 16,
-            color: colors[0],
+            color: extractedColors.background,
           }}>
           <View style={styles.iconContainer}>
             <View
               style={[
                 styles.gradient,
-                {
-                  backgroundColor: colors[0],
-                },
+                { backgroundColor: extractedColors.primary },
               ]}>
               {backgroundImageSource && (
                 <Image
