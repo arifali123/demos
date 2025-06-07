@@ -18,12 +18,28 @@ type GridItemProps = {
   colors: readonly string[];
 };
 
+// Mapping of screen names to their corresponding icon files
+const ICON_MAPPINGS: Record<string, any> = {
+  sudoku: require('../../../../assets/icons/sudoku.png'),
+  'composable-text': require('../../../../assets/icons/composable-text.png'),
+  'threads-holo-ticket': require('../../../../assets/icons/threads-holo-ticket.png'),
+  'shake-to-delete': require('../../../../assets/icons/shake-to-delete.png'),
+  'particles-button': require('../../../../assets/icons/particles-button.png'),
+  'ios-home-grid': require('../../../../assets/icons/ios-home-grid.png'),
+  '3d-scroll-transition': require('../../../../assets/icons/3d-scroll-transition.png'),
+  'fluid-tab-interaction': require('../../../../assets/icons/fluid-tab-interaction.png'),
+  'clock-time-picker': require('../../../../assets/icons/clock-time-picker.png'),
+  'card-shader-reflections': require('../../../../assets/icons/cards-shader-reflections.png'),
+};
+
 const GridItem: React.FC<GridItemProps> = React.memo(
   ({ item, onPress, style, colors }) => {
     const handleNavigate = useCallback(() => {
       onPress();
     }, [onPress]);
 
+    const backgroundImageSource =
+      ICON_MAPPINGS[item.name.toLowerCase().split(' ').join('-')];
 
     return (
       <Animated.View
@@ -47,10 +63,14 @@ const GridItem: React.FC<GridItemProps> = React.memo(
                   backgroundColor: colors[0],
                 },
               ]}>
-          
-              <View style={styles.iconWrapper}>
-                <item.icon />
-              </View>
+              {backgroundImageSource && (
+                <Image
+                  source={backgroundImageSource}
+                  style={styles.backgroundImage}
+                  contentFit="cover"
+                />
+              )}
+              <View style={styles.iconWrapper}>{/* <item.icon /> */}</View>
             </View>
           </View>
         </NavigationItem>
@@ -74,6 +94,13 @@ const styles = StyleSheet.create({
   iconContainer: {
     aspectRatio: 1,
     width: '100%',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
   },
   gradient: {
     flex: 1,
@@ -88,6 +115,15 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+  },
+  backgroundImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: '100%',
+    height: '100%',
   },
   iconWrapper: {
     flex: 1,
