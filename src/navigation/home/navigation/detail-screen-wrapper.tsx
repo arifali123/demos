@@ -88,9 +88,7 @@ export const DetailScreenWrapper = ({
   });
 
   if (!isReady) {
-    return (
-      <Animated.View style={[{ flex: 1 }, rPlaceholderStyle]}></Animated.View>
-    );
+    return <Animated.View style={[{ flex: 1 }, rPlaceholderStyle]} />;
   }
 
   return (
