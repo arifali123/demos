@@ -39,6 +39,10 @@ const ExpansionContext = createContext<{
   springProgress: SharedValue<number>;
   transitionScale: SharedValue<number>;
   transitionId: SharedValue<string | null>;
+  componentConfig: SharedValue<{
+    borderRadius: number;
+    color: string;
+  } | null>;
 }>({
   startTransition: () => {},
   resetTransition: () => {},
@@ -47,6 +51,10 @@ const ExpansionContext = createContext<{
   springProgress: makeMutable(0),
   transitionScale: makeMutable(1),
   transitionId: makeMutable<string | null>(null),
+  componentConfig: makeMutable<{
+    borderRadius: number;
+    color: string;
+  } | null>(null),
 });
 
 const SpringIconProgressConfig = {
@@ -222,6 +230,7 @@ export const ExpansionProvider = ({
       springProgress: springIconProgress,
       transitionScale,
       transitionId,
+      componentConfig,
     };
   }, [
     backTransition,
@@ -254,6 +263,10 @@ export const useCustomNavigation = () => {
       springProgress: makeMutable(0),
       transitionScale: makeMutable(1),
       transitionId: makeMutable<string | null>(null),
+      componentConfig: makeMutable<{
+        borderRadius: number;
+        color: string;
+      } | null>(null),
     };
   }
 
@@ -265,6 +278,7 @@ export const useCustomNavigation = () => {
     springProgress,
     transitionScale,
     transitionId,
+    componentConfig,
   } = context;
 
   return {
@@ -275,6 +289,7 @@ export const useCustomNavigation = () => {
     springProgress,
     transitionScale,
     transitionId,
+    componentConfig,
   };
 };
 

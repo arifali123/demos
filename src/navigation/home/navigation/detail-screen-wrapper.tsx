@@ -7,18 +7,20 @@ import Animated, {
   useAnimatedStyle,
   interpolate,
 } from 'react-native-reanimated';
-import { useEffect } from 'react';
 
 import { useCustomNavigation } from './expansion-provider';
+import { useEffect, useState } from 'react';
 
 export const DetailScreenWrapper = ({
   children,
 }: {
   children: React.ReactNode;
 }) => {
-  const { backTransition, transitionScale } = useCustomNavigation();
+  const { backTransition, transitionScale, componentConfig } =
+    useCustomNavigation();
   const trigger = useSharedValue(false);
   const scale = transitionScale;
+  const [isReady, setIsReady] = useState(false);
 
   const maxScale = 0.7;
 
@@ -72,9 +74,24 @@ export const DetailScreenWrapper = ({
     };
   });
 
+  // @TODO: prepare
   useEffect(() => {
-    console.log('DetailScreenWrapper mounted');
+    setTimeout(() => {
+      setIsReady(true);
+    }, 0);
   }, []);
+
+  const rPlaceholderStyle = useAnimatedStyle(() => {
+    return {
+      backgroundColor: componentConfig?.value?.color,
+    };
+  });
+
+  if (!isReady) {
+    return (
+      <Animated.View style={[{ flex: 1 }, rPlaceholderStyle]}></Animated.View>
+    );
+  }
 
   return (
     <GestureDetector gesture={gesture}>
