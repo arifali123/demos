@@ -1,12 +1,12 @@
+import { useNavigation } from '@react-navigation/native';
+import { useAtomValue } from 'jotai';
 import React, { useCallback, useMemo } from 'react';
 import { StyleSheet, useWindowDimensions } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import Animated, {
   LinearTransition,
   useAnimatedStyle,
 } from 'react-native-reanimated';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useAtomValue } from 'jotai';
 
 import type { Screens } from '../screens';
 import { ActiveScreensAtom } from '../states/filters';
